@@ -6,7 +6,7 @@ import java.sql.Time;
 
 @Entity
 @Table(name = "t_futou_record")
-public class TFutouRecord {
+public class FutouRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,9 +30,9 @@ public class TFutouRecord {
     @Column(name = "futou_record_note", columnDefinition = "text")
     private String futouRecordNote;
 
-    protected TFutouRecord() {}
+    protected FutouRecord() {}
 
-    public TFutouRecord(Integer whichOne, Time futouRecordTime, String density, Integer howManyIn, Integer howManyOut) {
+    public FutouRecord(Integer whichOne, Time futouRecordTime, String density, Integer howManyIn, Integer howManyOut) {
         this.whichOne = whichOne;
         this.futouRecordTime = futouRecordTime;
         this.density = density;
@@ -98,6 +98,9 @@ public class TFutouRecord {
 
     @ManyToOne
     @JoinColumn(name = "date_id")
-    private TDate dateId;
+    private DailySummary dailySummary;
 
+    public void setDate(DailySummary dailySummary) {
+        this.dailySummary = dailySummary;
+    }
 }

@@ -6,28 +6,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import per.me.record.entity.TDate;
-import per.me.record.repository.TDateRepository;
+import per.me.record.entity.DailySummary;
+import per.me.record.repository.DailySummaryRepository;
 
 @Controller
-@RequestMapping(path = "/t_date")
-public class TDateController {
+@RequestMapping(path = "/daily_summary")
+public class DailySummaryController {
 
     @Autowired
-    private TDateRepository tDateRepository;
+    private DailySummaryRepository dailySummaryRepository;
 
     @GetMapping(path = "/add")
     @ResponseBody
     public String addATDate(@RequestParam String year, @RequestParam String month, @RequestParam String day) {
-        TDate tDate = new TDate(year, month, day);
-        tDateRepository.save(tDate);
+        DailySummary dailySummary = new DailySummary(year, month, day);
+        dailySummaryRepository.save(dailySummary);
         return "saved";
     }
 
     @GetMapping(path = "all")
     @ResponseBody
-    public Iterable<TDate> getAllTDate() {
-        return tDateRepository.findAll();
+    public Iterable<DailySummary> getAllTDate() {
+        return dailySummaryRepository.findAll();
     }
 
 }

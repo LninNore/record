@@ -6,7 +6,7 @@ import java.sql.Time;
 
 @Entity
 @Table(name = "t_water_record")
-public class TWaterRecord {
+public class WaterRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,7 +14,7 @@ public class TWaterRecord {
     private Integer waterRecordId;
 
     @Column(name = "water_record_time")
-    private Time waterRecorddTime;
+    private Time waterRecordTime;
 
     @Column(name = "in_or_out")
     private String inOrOut;
@@ -25,12 +25,25 @@ public class TWaterRecord {
     @Column(name = "water_record_note", columnDefinition = "text")
     private String waterRecordNote;
 
-    protected TWaterRecord() {}
+    protected WaterRecord() {}
 
-    public TWaterRecord(Time waterRecorddTime, String inOrOut, Integer howMany) {
-        this.waterRecorddTime = waterRecorddTime;
+    public WaterRecord(Time waterRecordTime, String inOrOut, Integer howMany, String waterRecordNote) {
+        this.waterRecordTime = waterRecordTime;
         this.inOrOut = inOrOut;
         this.howMany = howMany;
+        this.waterRecordNote = waterRecordNote;
+    }
+
+    @Override
+    public String toString() {
+        return "WaterRecord{" +
+                "waterRecordId=" + waterRecordId +
+                ", waterRecordTime=" + waterRecordTime +
+                ", inOrOut='" + inOrOut + '\'' +
+                ", howMany=" + howMany +
+                ", waterRecordNote='" + waterRecordNote + '\'' +
+                ", dailySummary=" + dailySummary +
+                '}';
     }
 
     public Integer getWaterRecordId() {
@@ -42,11 +55,11 @@ public class TWaterRecord {
     }
 
     public Time getWaterRecorddTime() {
-        return waterRecorddTime;
+        return waterRecordTime;
     }
 
-    public void setWaterRecorddTime(Time waterRecorddTime) {
-        this.waterRecorddTime = waterRecorddTime;
+    public void setWaterRecordTime(Time waterRecorddTime) {
+        this.waterRecordTime = waterRecorddTime;
     }
 
     public String getInOrOut() {
@@ -75,6 +88,9 @@ public class TWaterRecord {
 
     @ManyToOne
     @JoinColumn(name = "date_id")
-    private TDate dateId;
+    private DailySummary dailySummary;
 
+    public void setDate(DailySummary dailySummary) {
+        this.dailySummary = dailySummary;
+    }
 }

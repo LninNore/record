@@ -3,8 +3,8 @@ package per.me.record.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "t_date")
-public class TDate {
+@Table(name = "t_daily_summary")
+public class DailySummary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,9 +26,9 @@ public class TDate {
     @Column(name = "date_note", columnDefinition = "text")
     private String dateNote;
 
-    protected TDate(){}
+    protected DailySummary(){}
 
-    public TDate(String year, String month, String day){
+    public DailySummary(String year, String month, String day){
         this.year = year;
         this.month = month;
         this.day = day;
